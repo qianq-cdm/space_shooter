@@ -6,8 +6,6 @@ class PlayerShip:
         self.time_from_last_position_update = 0
         self.center_x = width / 2
         self.center_y = height / 5
-        self.change_x = 0
-        self.change_y = 0
         self.angle = 0
         self.speed = 1
         self.texture = ":resources:images/space_shooter/playerShip1_blue.png"
