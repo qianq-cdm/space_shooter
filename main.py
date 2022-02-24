@@ -4,7 +4,7 @@ from module.my_game import MyGame
 
 SCREEN_WIDTH = 960
 SCREEN_HEIGHT = 600
-SCREEN_TITLE = "Roche, papier, ciseaux"
+SCREEN_TITLE = "Space Shooter"
 
 
 def main():

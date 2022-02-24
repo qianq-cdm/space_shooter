@@ -1,8 +1,5 @@
 import arcade
-
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
-SCREEN_TITLE = "Modèle de départ"
+from module.player_ship import PlayerShip
 
 
 class MyGame(arcade.Window):
@@ -16,10 +13,14 @@ class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
 
+        self.SCREEN_WIDTH = width
+        self.SCREEN_HEIGHT = height
+
         arcade.set_background_color(arcade.color.OUTER_SPACE)
 
         # Si vous avez des listes de sprites, il faut les créer ici et les
         # initialiser à None.
+        self.player_ship = None
 
     def setup(self):
         """
@@ -28,7 +29,7 @@ class MyGame(arcade.Window):
         """
         # C'est ici que vous allez créer vos listes de sprites et vos sprites.
         # C'est aussi ici que vous charger les sons de votre jeu.
-        pass
+        self.player_ship = PlayerShip(self.SCREEN_WIDTH, self.SCREEN_HEIGHT)
 
     def on_draw(self):
         """
@@ -41,6 +42,7 @@ class MyGame(arcade.Window):
         arcade.start_render()
 
         # Invoquer la méthode "draw()" de vos sprites ici.
+        self.player_ship.on_draw()
 
     def on_update(self, delta_time):
         """
@@ -50,7 +52,7 @@ class MyGame(arcade.Window):
         Paramètre:
             - delta_time : le nombre de milliseconde depuis le dernier update.
         """
-        pass
+        self.player_ship.on_update(delta_time)
 
     def on_key_press(self, key, key_modifiers):
         """
@@ -63,7 +65,10 @@ class MyGame(arcade.Window):
         Pour connaître la liste des touches possibles:
         http://arcade.academy/arcade.key.html
         """
-        pass
+        if key == arcade.key.LEFT:
+            self.player_ship.turn_left()
+        elif key == arcade.key.RIGHT:
+            self.player_ship.turn_right()
 
     def on_key_release(self, key, key_modifiers):
         """
