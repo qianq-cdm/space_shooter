@@ -29,7 +29,7 @@ class MyGame(arcade.Window):
         """
         # C'est ici que vous allez créer vos listes de sprites et vos sprites.
         # C'est aussi ici que vous charger les sons de votre jeu.
-        self.player_ship = PlayerShip(self.SCREEN_WIDTH /2, self.SCREEN_HEIGHT / 5,
+        self.player_ship = PlayerShip(self.SCREEN_WIDTH, self.SCREEN_HEIGHT,
                                       ":resources:images/space_shooter/playerShip1_blue.png")
 
     def on_draw(self):
