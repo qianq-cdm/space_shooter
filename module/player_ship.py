@@ -6,10 +6,18 @@ class PlayerShip(arcade.Sprite):
         self.SCREEN_WIDTH = width
         self.SCREEN_HEIGHT = height
         super().__init__(texture, center_x=self.SCREEN_WIDTH / 2, center_y=self.SCREEN_HEIGHT / 5)
-        self.speed = 0.1
+        self.speed = 1
+
+        self.from_last_update = 0
 
     def update(self, delta_time):
-        self.strafe(self.speed)
+        if self.from_last_update >= 0.5:
+            self.strafe(self.speed)
+            self.from_last_update = 0
+        else:
+            self.from_last_update += delta_time
+            print(f"from_last_update = {self.from_last_update}")
+
         self.center_x += self.change_x
         self.center_y += self.change_y
 
@@ -22,9 +30,3 @@ class PlayerShip(arcade.Sprite):
             self.right = self.SCREEN_WIDTH
         elif self.SCREEN_WIDTH <= self.right:
             self.left = 0
-
-    def accelerate(self):
-        self.speed += 0.01
-
-    def decelerate(self):
-        self.speed -= 0.01

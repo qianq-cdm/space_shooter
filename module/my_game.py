@@ -72,10 +72,6 @@ class MyGame(arcade.Window):
             self.player_ship.turn_left(10)
         elif key == arcade.key.RIGHT:
             self.player_ship.turn_right(10)
-        elif key == arcade.key.W:
-            self.player_ship.accelerate()
-        elif key == arcade.key.S:
-            self.player_ship.decelerate()
 
     def on_key_release(self, key, key_modifiers):
         """
