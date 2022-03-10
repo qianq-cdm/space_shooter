@@ -67,6 +67,10 @@ class MyGame(arcade.Window):
         self.player_ship.update(delta_time)
 
     def update_turn(self):
+        """
+        Keep turning the space ship while the left/right key is pressed
+        :return: None
+        """
         if self.left_pressed:
             self.player_ship.turn_left(3)
         elif self.right_pressed:
