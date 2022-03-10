@@ -85,8 +85,10 @@ class MyGame(arcade.Window):
         """
         if key == arcade.key.LEFT:
             self.left_pressed = True
+            self.right_pressed = False
         elif key == arcade.key.RIGHT:
             self.right_pressed = True
+            self.left_pressed = False
         elif key == arcade.key.SPACE:
             pass
 
