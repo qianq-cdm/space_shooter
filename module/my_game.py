@@ -20,7 +20,12 @@ class MyGame(arcade.Window):
 
         # Si vous avez des listes de sprites, il faut les créer ici et les
         # initialiser à None.
+
+        self.left_pressed = None
+        self.right_pressed = None
+
         self.player_ship = None
+        self.lasers = arcade.SpriteList()
 
     def setup(self):
         """
@@ -31,6 +36,9 @@ class MyGame(arcade.Window):
         # C'est aussi ici que vous charger les sons de votre jeu.
         self.player_ship = PlayerShip(self.SCREEN_WIDTH, self.SCREEN_HEIGHT,
                                       ":resources:images/space_shooter/playerShip1_blue.png")
+
+        self.left_pressed = False
+        self.right_pressed = False
 
     def on_draw(self):
         """
@@ -55,7 +63,14 @@ class MyGame(arcade.Window):
         Paramètre:
             - delta_time : le nombre de milliseconde depuis le dernier update.
         """
+        self.update_turn()
         self.player_ship.update(delta_time)
+
+    def update_turn(self):
+        if self.left_pressed:
+            self.player_ship.turn_left(3)
+        elif self.right_pressed:
+            self.player_ship.turn_right(3)
 
     def on_key_press(self, key, key_modifiers):
         """
@@ -69,9 +84,11 @@ class MyGame(arcade.Window):
         http://arcade.academy/arcade.key.html
         """
         if key == arcade.key.LEFT:
-            self.player_ship.turn_left(10)
+            self.left_pressed = True
         elif key == arcade.key.RIGHT:
-            self.player_ship.turn_right(10)
+            self.right_pressed = True
+        elif key == arcade.key.SPACE:
+            pass
 
     def on_key_release(self, key, key_modifiers):
         """
@@ -80,7 +97,12 @@ class MyGame(arcade.Window):
             - key: la touche relâchée
             - key_modifiers: est-ce que l'usager appuie sur "shift" ou "ctrl" ?
         """
-        pass
+        if key == arcade.key.LEFT:
+            self.left_pressed = False
+        elif key == arcade.key.RIGHT:
+            self.right_pressed = False
+        elif key == arcade.key.SPACE:
+            pass
 
     def on_mouse_motion(self, x, y, delta_x, delta_y):
         """
