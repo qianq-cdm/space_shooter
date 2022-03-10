@@ -1,10 +1,9 @@
 import arcade
 
-
 class PlayerShip(arcade.Sprite):
-    def __init__(self, texture):
-        super().__init__(texture)
-        self.speed = 0.5
+    def __init__(self, center_x, center_y, texture):
+        super().__init__(texture, center_x=center_x, center_y=center_y)
+        self.speed = 0.1
 
     def update(self, delta_time):
         self.strafe(self.speed)
@@ -12,7 +11,7 @@ class PlayerShip(arcade.Sprite):
         self.center_y += self.change_y
 
     def accelerate(self):
-        self.speed += 0.2
+        self.speed += 0.01
 
     def decelerate(self):
-        self.speed -= 0.2
+        self.speed -= 0.01

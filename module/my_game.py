@@ -29,7 +29,8 @@ class MyGame(arcade.Window):
         """
         # C'est ici que vous allez créer vos listes de sprites et vos sprites.
         # C'est aussi ici que vous charger les sons de votre jeu.
-        self.player_ship = PlayerShip(":resources:images/space_shooter/playerShip1_blue.png")
+        self.player_ship = PlayerShip(self.SCREEN_WIDTH /2, self.SCREEN_HEIGHT / 5,
+                                      ":resources:images/space_shooter/playerShip1_blue.png")
 
     def on_draw(self):
         """
@@ -44,6 +45,8 @@ class MyGame(arcade.Window):
         # Invoquer la méthode "draw()" de vos sprites ici.
         self.player_ship.draw()
 
+        arcade.finish_render()
+
     def on_update(self, delta_time):
         """
         Toute la logique pour déplacer les objets de votre jeu et de
@@ -52,7 +55,7 @@ class MyGame(arcade.Window):
         Paramètre:
             - delta_time : le nombre de milliseconde depuis le dernier update.
         """
-        pass
+        self.player_ship.update(delta_time)
 
     def on_key_press(self, key, key_modifiers):
         """
