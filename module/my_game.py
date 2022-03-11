@@ -1,5 +1,6 @@
 import arcade
 from module.player_ship import PlayerShip
+from module.laser import Laser
 
 
 class MyGame(arcade.Window):
@@ -52,6 +53,7 @@ class MyGame(arcade.Window):
 
         # Invoquer la méthode "draw()" de vos sprites ici.
         self.player_ship.draw()
+        self.lasers.draw()
 
         arcade.finish_render()
 
@@ -65,6 +67,7 @@ class MyGame(arcade.Window):
         """
         self.update_turn()
         self.player_ship.update(delta_time)
+        self.lasers.update()
 
     def update_turn(self):
         """
@@ -94,7 +97,8 @@ class MyGame(arcade.Window):
             self.right_pressed = True
             self.left_pressed = False
         elif key == arcade.key.SPACE:
-            pass
+            center_x, center_y, angle = self.player_ship.get_laser_coordinate()
+            self.lasers.append(Laser(center_x, center_y, angle))
 
     def on_key_release(self, key, key_modifiers):
         """

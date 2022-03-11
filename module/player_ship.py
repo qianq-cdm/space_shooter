@@ -16,7 +16,6 @@ class PlayerShip(arcade.Sprite):
             self.from_last_update = 0
         else:
             self.from_last_update += delta_time
-            print(f"from_last_update = {self.from_last_update}")
 
         self.center_x += self.change_x
         self.center_y += self.change_y
@@ -30,3 +29,6 @@ class PlayerShip(arcade.Sprite):
             self.right = self.SCREEN_WIDTH
         elif self.SCREEN_WIDTH <= self.right:
             self.left = 0
+
+    def get_laser_coordinate(self):
+        return self.center_x, self.center_y, self.angle + 90
